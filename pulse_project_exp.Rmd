@@ -1,0 +1,19 @@
+---
+title: "pulse_project"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+```{r}
+DATA_DIR <- './data'
+
+# Read in the raw excel files
+raw_csv_files <- list.files(path = DATA_DIR)
+pulse_data <- map(paste('data/', raw_csv_files, sep = ''), read_csv)
+pulse_data <- bind_rows(pulse_data)
+```
+
